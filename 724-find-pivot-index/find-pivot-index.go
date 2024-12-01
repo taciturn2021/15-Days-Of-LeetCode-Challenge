@@ -1,4 +1,5 @@
 func pivotIndex(nums []int) int {
+    runtime.GC()
 	sum := 0
 	for i := 0; i < len(nums); i++ {
 		sum = sum + nums[i]
