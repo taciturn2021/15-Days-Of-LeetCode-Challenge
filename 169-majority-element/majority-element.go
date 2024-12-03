@@ -1,14 +1,14 @@
 func majorityElement(nums []int) int {
-    appearence := make(map[int]int)
-    majority := len(nums) / 2
-    for i := 0; i < len(nums); i++{
-        appearence[nums[i]]++
-    } 
-    for i := 0; i < len(nums); i++{
-        if appearence[nums[i]] > majority{
-            return nums[i]
-        }
-    } 
-
-    return 0
+	appearence, majority := 0, 0
+	for _, val := range nums {
+		if appearence == 0 {
+			majority = val
+		}
+		if majority == val {
+			appearence += 1
+		} else {
+			appearence -= 1
+		}
+	}
+	return majority
 }
