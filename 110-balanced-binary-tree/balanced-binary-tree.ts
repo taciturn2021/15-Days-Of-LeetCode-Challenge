@@ -20,7 +20,12 @@ function isBalanced(root: TreeNode | null): boolean {
         if (node === null) return ;
 
         runOnEachNode(node.left);
-        check.push(checkBalanced(node));
+        let result = checkBalanced(node);
+        if (result === false) {
+            check = [false];
+            return;
+        }
+        check.push(result);
         runOnEachNode(node.right);
     }
 
