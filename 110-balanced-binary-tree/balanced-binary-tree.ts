@@ -13,20 +13,42 @@
  */
 
 function isBalanced(root: TreeNode | null): boolean {
+    if (root === null) return true;
 
-    const dfs = (node: TreeNode | null): number => {
-        if (node === null) return 0;
+    var check = [];
+    const runOnEachNode = (node) => {
+        if (node === null) return ;
 
-        const left = dfs(node.left);
-        if (left === -1) return -1;   
+        runOnEachNode(node.left);
+        let result = checkBalanced(node);
+        if (result === false) {
+            check = [false];
+            return;
+        }
+        check.push(result);
+        runOnEachNode(node.right);
+    }
 
-        const right = dfs(node.right);
-        if (right === -1) return -1;  
+    const checkBalanced = (node) => {
 
-        if (Math.abs(left - right) > 1) return -1; 
+        let leftDepth = findMaxDepth(node.left,0);
+        let rightDepth = findMaxDepth(node.right,0);
+        let diff = Math.abs(leftDepth - rightDepth);
+        return diff < 2;
+    }
 
-        return Math.max(left, right) + 1;  
-    };
 
-    return dfs(root) !== -1;
-}
+
+    const findMaxDepth =  (node, height) => {
+        if (node === null) return height;
+
+        let heightLeft = findMaxDepth(node.left, height + 1);
+        let heightRight = findMaxDepth(node.right, height + 1);
+        
+        return (heightLeft > heightRight) ? heightLeft: heightRight ;
+    }
+    runOnEachNode(root);
+    check = check.filter(item => item === false);
+    if (check.length > 0 ) return false;
+    return true;
+};
