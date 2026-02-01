@@ -9,7 +9,6 @@ class Solution(object):
             if nums[first] != nums[i]:
                 first += 1
                 nums[first] = nums[i]
-        nums[:] = nums[:first+1]
         print(nums)
         return first+1
 
