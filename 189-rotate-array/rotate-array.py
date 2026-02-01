@@ -5,12 +5,7 @@ class Solution(object):
         :type k: int
         :rtype: None Do not return anything, modify nums in-place instead.
         """
-        rotatedList = [0 for i in range(len(nums))]
-        print(rotatedList)
-        for i in range(len(nums)):
-            newIndex = (i + k) % len(nums)
-            print(newIndex)
-            rotatedList[newIndex] = nums[i]
-        nums[:] = rotatedList
+        k = k % len(nums)
+        nums[:] = nums[-k:] + nums[:-k]
         
 
