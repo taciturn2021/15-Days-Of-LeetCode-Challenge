@@ -11,13 +11,7 @@ function myAtoi(s: string): number {
         chars.splice(index,1);
         
     }
-    // remove white spaces from the end;
-    index = 0;
-    while (index >= 0) {
-        if (chars[index] !== " ") break;
-        chars.splice(index,1);
-        index--;
-    }
+
 
     // extract sign
     let sign = "+"
