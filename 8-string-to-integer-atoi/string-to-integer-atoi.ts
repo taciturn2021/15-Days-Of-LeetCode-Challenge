@@ -18,14 +18,14 @@ function myAtoi(s: string): number {
         chars.splice(index,1);
         index--;
     }
-    console.log(`white space removal: ${chars}`);
+
     // extract sign
     let sign = "+"
     if (chars[0] == "+" || chars[0] == "-") {
         sign = chars[0];
         chars.shift();
     }
-    console.log(`Sign: ${sign}`);
+   
 
     // extract number
     let num = "";
@@ -39,7 +39,7 @@ function myAtoi(s: string): number {
             break;
         }
     }
-    console.log(`Num before Int Limit ${num}`);
+ 
     let upperMax = 2 ** 31 -1;
     let lowerMax = 2 ** 31 * -1;
     let ans = 0
@@ -58,6 +58,6 @@ function myAtoi(s: string): number {
         }
     }
 
-    console.log(`final answer: ${ans}`);
+
     return ans;
 };
