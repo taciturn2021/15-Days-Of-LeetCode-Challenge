@@ -1,15 +1,15 @@
-var memo: number[] = []
 function climbStairs(n: number): number {
-    let memo = []
-    for (let i = 0; i < n+1; i++) {
-        memo[i] = -10;
+    if (n == 1) return n;
+    let memo = [];
+    memo[n] = 0;
+    memo[n-1] = 1;
+    memo[n-2] = 2;
+    let curr = n-3;
+    while (curr >= 0) {
+       memo[curr] = memo[curr+1] + memo[curr+2];
+       curr--;
     }
-    memo[0] = 1;
-    memo[1] = 1;
-    let total =0;
-    for (let i = 2; i < n+1; i++){
-        memo[i] = memo[i-1] + memo[i-2];
-    }
-    return memo[memo.length-1];
-    
-    };
+    console.log(memo, curr);
+    return memo[curr+1];
+};
+
