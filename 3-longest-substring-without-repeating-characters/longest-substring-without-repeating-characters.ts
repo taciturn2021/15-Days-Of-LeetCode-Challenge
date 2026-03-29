@@ -1,22 +1,21 @@
 function lengthOfLongestSubstring(s: string): number {
-    if (s.length == 0 || s.length == 1) return s.length;
-    let queue = []
-    let maxLength = 0;
-    // abcdef
-    for (let i of s) {
-        if (queue.includes(i)) {
-            maxLength = maxLength > queue.length ? maxLength : queue.length;
-            while(queue[0] != i) {
-                queue.splice(0,1);
-            }
-            queue.splice(0,1)
+   let left = 0;
+   let right = 0;
+   let maxLength = 0;
+   let track = new Set();
+   while (right < s.length) {
+    if (track.has(s[right])) {
+        maxLength = maxLength > track.size ? maxLength : track.size;
+        while( track.has(s[right]) ) {
+            track.delete(s[left]);
+            left++;
         }
+    } 
+    track.add(s[right]);
+    right++
+   }
 
-        queue.push(i);
-    }
-
-    maxLength = maxLength > queue.length ? maxLength : queue.length;
+    maxLength = maxLength > track.size ? maxLength : track.size;
     return maxLength;
-
-
 };
+
