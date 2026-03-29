@@ -9,7 +9,6 @@ function climbStairs(n: number): number {
        memo[curr] = memo[curr+1] + memo[curr+2];
        curr--;
     }
-    console.log(memo, curr);
     return memo[curr+1];
 };
 
